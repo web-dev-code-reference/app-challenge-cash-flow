@@ -5,7 +5,7 @@ class AddScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: new Text('Add Product'),
+      child: new Text('Add Transaction'),
     );
   }
 }

@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import '../components/footer.dart';
-import '../components/footer.dart';
+
 import './add_screen.dart';
 import './history_screen.dart';
 import './dashboard_screen.dart';
 // import 'package:appchallenge_1_cashflow/pages/add_screen.dart';
-
-
 
 class Home extends StatefulWidget {
   @override
