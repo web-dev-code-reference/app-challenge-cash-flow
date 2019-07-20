@@ -51,6 +51,7 @@ Map<String, dynamic> toMap(){
   map['title'] = _title;
   map['amount'] = _amount;
   map['date'] = _date;
+  return map;
 } 
 
 

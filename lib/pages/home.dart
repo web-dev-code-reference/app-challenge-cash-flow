@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+
+import '../models/money.dart';
+import '../utils/database_helper.dart';
+import './add_screen.dart';
+import 'package:sqflite/sqflite.dart';
+
 import '../components/footer.dart';
 
-import './add_screen.dart';
 import './history_screen.dart';
 import './dashboard_screen.dart';
 // import 'package:appchallenge_1_cashflow/pages/add_screen.dart';
@@ -77,17 +82,33 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin{
       floatingActionButton: new FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: (){
-          showDialog(
-            context: context,
-            builder: (context)=>AlertDialog(
-              title: new Text('Add Record'),
-              content: new AddScreen(),
-            )
-          );
+          // showDialog(
+          //   context: context,
+          //   builder: (context)=>AlertDialog(
+          //     title: new Text('Add Record'),
+          //     content: new AddScreen(),
+          //   )
+          // );
+          debugPrint('FAB clicked');
+		      navigateToDetail(Money('',  2), 'Add Note');
         }
       ),
       bottomNavigationBar: FooterComponent(),
     );
   }
+
+
+  void navigateToDetail(Money money, String title) async {
+	  bool result = await Navigator.push(context, MaterialPageRoute(builder: (context) {
+		  return AddScreen(money, title);
+	  }));
+
+	  if (result == true) {
+	  	// updateListView();
+	  }
+  }
+
+  
 }
+
 
