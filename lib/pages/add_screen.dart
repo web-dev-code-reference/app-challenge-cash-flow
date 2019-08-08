@@ -1,8 +1,9 @@
-import 'dart:async';
+// import 'dart:async';
 import 'package:flutter/material.dart';
 import '../models/money.dart';
 import '../utils/database_helper.dart';
 import 'package:intl/intl.dart';
+// import 'dart:developer';
 
 class AddScreen extends StatefulWidget {
 
@@ -45,7 +46,7 @@ class AddScreenState extends State<AddScreen> {
 
     return WillPopScope(
 
-	    onWillPop: () {
+	    onWillPop: (){
 	    	// Write some code to control things, when user press Back navigation button in device navigationBar
 		    moveToLastScreen();
 	    },
@@ -138,6 +139,7 @@ class AddScreenState extends State<AddScreen> {
 						    onChanged: (value) {
 							    debugPrint('Something changed in Description Text Field');
 							    // updateDescription();
+							    updateAmount();
 						    },
 						    decoration: InputDecoration(
 								    labelText: 'Amount',
@@ -236,10 +238,11 @@ class AddScreenState extends State<AddScreen> {
     money.title = titleController.text;
   }
 
-	// Update the description of money object
-	// void updateDescription() {
-	// 	money.description = descriptionController.text;
-	// }
+	// Update the amount of money object
+	void updateAmount() {
+  
+		money.amount = int.parse(amountController.text) ;
+	}
 
 	// Save data to database
 	void _save() async {
@@ -252,11 +255,16 @@ class AddScreenState extends State<AddScreen> {
 			// result = await helper.updateMoney(money);
 		} else { // Case 2: Insert Operation
 			result = await helper.insertMoney(money);
+      // var testresult=money;
+      // log('$result[1]');
+      
 		}
 
 		if (result != 0) {  // Success
 			_showAlertDialog('Status', 'money Saved Successfully');
-		} else {  // Failure
+      
+
+		} else {  // Failure m
 			_showAlertDialog('Status', 'Problem Saving money');
 		}
 

@@ -69,6 +69,12 @@ class DatabaseHelper {
   }
 
 
+  Future<int> deleteMoney(int id) async{
+    var db =  await this.database;
+    int result = await db.rawDelete('DELETE FROM $moneyTable WHERE $colId = $id')
+    return result;    
+  }
+
 
   Future<List<Money>> getMoneyList() async{
     
