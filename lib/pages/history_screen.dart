@@ -20,7 +20,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
   DatabaseHelper databaseHelper = DatabaseHelper();
   List<Money> moneyList;
   int count = 0;
-  updateListView();
+  // updateListView();
 
   @override
   Widget build(BuildContext context) {
@@ -49,13 +49,25 @@ class _HistoryScreenState extends State<HistoryScreen> {
         return Card(
           child: ListTile(
           leading: CircleAvatar(child: Text('$row_position'),),
-          title: Text('Exp - ' + this.moneyList[position].title, ),
+          title: Text('Exp - ' + this.moneyList[position].title , ),
           // trailing: Text('P '+this.moneyList[position].amount.toString(), ),
-          trailing: GestureDetector(
-            child: Icon(Icons.delete, color: Colors.grey,),
-            onTap: (){
-              _delete(context, moneyList[position]);
-            },
+          subtitle: Text( 'P' +  this.moneyList[position].amount.toString()),
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Container(
+                width: 60,
+                child: Text('P '+this.moneyList[position].amount.toString(),textAlign: TextAlign.left, ),
+              ),
+              
+       
+              GestureDetector(
+                child: Icon(Icons.delete, color: Colors.grey,),
+                onTap: (){
+                  _delete(context, moneyList[position]);
+                },
+              ),
+            ],
           ),
           // subtitle: Text(this.moneyList[position].title, ),
 
